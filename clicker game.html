@@ -1,0 +1,50 @@
+<!--This is a simple clicker game where the player can click a button to earn points. The player can also buy an upgrade that increases the number of points earned per click.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        #score { font-size: 2em; margin: 20px; }
+        #clickButton { font-size: 1.5em; padding: 10px 20px; cursor: pointer; }
+        #upgradeButton { margin-top: 10px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Clicker Game</h1>
+    <p>Click the button to earn points!</p>
+    <p id="score">Score: 0</p>
+    <button id="clickButton" onclick="increaseScore()">Click Me!</button>
+    <button id="upgradeButton" onclick="buyUpgrade()">Buy Upgrade (Cost: 10)</button>
+    
+    <script>
+        let score = 0;
+        let pointsPerClick = 1;
+        let upgradeCost = 10;
+
+        function increaseScore() {
+            score += pointsPerClick;
+            updateDisplay();
+        }
+
+        function buyUpgrade() {
+            if (score >= upgradeCost) {
+                score -= upgradeCost;
+                pointsPerClick++;
+                upgradeCost *= 2;
+                updateDisplay();
+            } else {
+                alert("Not enough points!");
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById("score").textContent = "Score: " + score;
+            document.getElementById("upgradeButton").textContent = "Buy Upgrade (Cost: " + upgradeCost + ")";
+        }
+    </script>
+</body>
+</html>
